@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -61,6 +62,36 @@ public class LoginPage implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		if (e.getSource() == resetButton) {
+			userIDField.setText(""); // Clear field
+			userPasswordField.setText(""); // Clear field
+		}
+		
+		if (e.getSource() == loginButton) {
+			
+			String userID = userIDField.getText();
+			String userPassword = String.valueOf(userPasswordField.getPassword()); // Retrieve the entered password, convert it to a string, then store it in our String variable
+			
+			if (loginInfo.containsKey(userID)) {
+				
+				if (loginInfo.get(userID).equals(userPassword)) { // Get the password associated with the userID from the hashmap and compare it to the password entered by the user
+					messageLabel.setForeground(Color.GREEN);
+					messageLabel.setText("Login successful");
+					
+					frame.dispose();
+					
+					WelcomePage welcomePage = new WelcomePage(userID);
+					
+				} else {
+					messageLabel.setForeground(Color.RED);
+					messageLabel.setText("Incorrect password");
+				}
+				
+			} else {
+				messageLabel.setForeground(Color.RED);
+				messageLabel.setText("Username not found");
+			}
+		}
 		
 	}
 
