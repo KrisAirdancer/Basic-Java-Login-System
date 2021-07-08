@@ -4,9 +4,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		IDandPasswords idandPasswords = new IDandPasswords();
+		IDandPasswords idAndPasswords = new IDandPasswords();
 		
-		LoginPage loginPage = new LoginPage();
+		LoginPage loginPage = new LoginPage(idAndPasswords.getLogininfo());
 
 	}
 
